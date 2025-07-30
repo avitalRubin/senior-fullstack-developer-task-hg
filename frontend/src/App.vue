@@ -10,10 +10,13 @@
 import { computed } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import Navbar from "./components/Navbar.vue"
+import { useStore } from 'vuex'
+
+const store = useStore()
 
 const route = useRoute()
 const router = useRouter()
-const showNavbar = computed(() => route.path !== "/")
+const showNavbar = computed(() => store.getters.user != null)
 
 const handleLogout = () => {
 	router.push("/")
